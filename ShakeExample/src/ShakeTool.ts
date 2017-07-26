@@ -32,6 +32,7 @@ class ShakeTool {
      * @param        maxDis    震动最大距离
      */
     public shakeObj(target: egret.DisplayObject,time: number,rate: number,maxDis: number): void {
+        this.stop();
         this.target = target;
         this.initX = target.x;
         this.initY = target.y;
@@ -59,6 +60,7 @@ class ShakeTool {
             egret.Tween.removeTweens(this.target);
             this.target.x = this.initX;
             this.target.y = this.initY;
+            this.target = null;
         }
         this.timer.removeEventListener(egret.TimerEvent.TIMER,this.shaking,this);
         this.timer.removeEventListener(egret.TimerEvent.TIMER_COMPLETE,this.shakeComplete,this);
