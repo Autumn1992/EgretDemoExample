@@ -131,8 +131,5 @@ class Main extends eui.UILayer {
     protected startCreateScene(): void {
         //微信接口测试
         this.addChild(new HomeScene());
-        
-        //网页授权测试
-        //new WebChat();
     }
 }

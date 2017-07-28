@@ -79,24 +79,6 @@ $signPackage = $jssdk->GetSignPackage();
     	
     		//游戏版本，防止缓存
     		var version = "1.0";
-			  	
-    		//测试网页授权，使用code换取token
-    		function getToken(code){
-    			var url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx4a14bf95e973b059&secret=af99ce68694f39e2712e7cf7c22fe224&code=" + code + "&grant_type=authorization_code";
-		    	$.ajax({  
-			    	type : "get",  
-			    	async:false,  
-			    	url : url,  
-			    	dataType : "json",//数据类型为jsonp  
-			    	
-			    	success : function(data){  
-			    		alert('success:',data);
-			    	},  
-			    	error:function(){  
-			    		alert('fail');  
-			    	}  
-		    	});
-    		}
     	
         /**
          * {
