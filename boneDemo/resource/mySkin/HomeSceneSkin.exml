@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="HomeSceneSkin" width="1136" height="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Rect left="0" right="0" top="0" bottom="0" fillColor="0x808080"/>
+	<e:Group id="boneGroup" left="0" right="0" top="0" bottom="0"/>
+	<e:Group id="uiGroup" left="0" right="0" top="0" bottom="0">
+		<e:Label id="boneLabel" text="骨骼数量：0" right="30" top="28" verticalAlign="middle" textAlign="left" anchorOffsetX="0" width="200" x="906" y="28" scaleX="1" scaleY="1"/>
+		<e:Button id="clearBone" label="清理骨骼" top="18" right="245" x="791" y="18" scaleX="1" scaleY="1"/>
+		<e:Button id="bone10" label="+10骨骼" top="18" right="470" x="561.6666666666666" y="18" scaleX="1" scaleY="1"/>
+		<e:Button id="bone100" label="+100骨骼" top="18" right="356" x="675.3333333333333" y="28" scaleX="1" scaleY="1"/>
+		<e:Button id="bone1" label="+1骨骼" top="18" right="588" x="542" y="18" scaleX="1" scaleY="1"/>
+		<e:Label id="mcLabel" text="动画数量：0" right="30" top="93" verticalAlign="middle" textAlign="left" anchorOffsetX="0" width="200" x="916" y="38" scaleX="1" scaleY="1"/>
+		<e:Label id="fastLabel" text="极速数量：0" right="50" top="153" verticalAlign="middle" textAlign="left" anchorOffsetX="0" width="200" x="926" y="48" scaleX="1" scaleY="1"/>
+		<e:Button id="clearMC" label="清理动画" top="83" right="245" x="801" y="28" scaleX="1" scaleY="1"/>
+		<e:Button id="mc10" label="+10帧动画" top="83" right="496" x="682" y="28" scaleX="1" scaleY="1"/>
+		<e:Button id="mc100" label="+100帧动画" top="83" right="366" x="692" y="38" scaleX="1" scaleY="1"/>
+		<e:Button id="mc1" label="+1帧动画" top="83" right="626" x="552" y="28" scaleX="1" scaleY="1"/>
+		<e:Button id="fast0" label="+1极速" top="143" right="626" x="562" y="38" scaleX="1" scaleY="1"/>
+		<e:Button id="fast10" label="+10极速" top="143" right="506" x="572" y="48" scaleX="1" scaleY="1"/>
+		<e:Button id="fast100" label="+100极速" top="143" right="386" x="582" y="58" scaleX="1" scaleY="1"/>
+		<e:Button id="clearFast" label="清理极速" top="143" right="266" x="592" y="68" scaleX="1" scaleY="1"/>
+	</e:Group>
+</e:Skin>
