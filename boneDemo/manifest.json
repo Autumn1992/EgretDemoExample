@@ -10,21 +10,16 @@
 		"libs/modules/game/game.js"
 	],
 	"game": [
-		"bin-debug/dragonbones/BaseElement.js",
 		"bin-debug/movieClip/BaseMovieClip.js",
-		"bin-debug/dragonbones/GameConfig.js",
-		"bin-debug/ThemeAdapter.js",
-		"bin-debug/AssetAdapter.js",
-		"bin-debug/dragonbones/BianFuJing.js",
-		"bin-debug/dragonbones/BingYao.js",
-		"bin-debug/dragonbones/DaJi.js",
 		"bin-debug/LoadingUI.js",
-		"bin-debug/dragonbones/TestDB.js",
 		"bin-debug/Main.js",
+		"bin-debug/ThemeAdapter.js",
+		"bin-debug/dragonbones/BoneBin.js",
+		"bin-debug/scene/LoadScene.js",
+		"bin-debug/dragonbones/BoneJson.js",
+		"bin-debug/AssetAdapter.js",
 		"bin-debug/movieClip/TestMC.js",
 		"bin-debug/scene/HomeScene.js",
-		"bin-debug/scene/LoadScene.js",
-		"bin-debug/ui/HpBar.js",
-		"bin-debug/ui/HpText.js"
+		"bin-debug/dragonbones/BoneFast.js"
 	]
 }

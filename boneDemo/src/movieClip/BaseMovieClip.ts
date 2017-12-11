@@ -7,6 +7,7 @@ class BaseMovieClip extends egret.MovieClip{
     public constructor() {
         super();
     }
+    
     /**
      * @param dataKey json配置文件
      * @param textureKey png纹理集
@@ -18,10 +19,12 @@ class BaseMovieClip extends egret.MovieClip{
         let mcDataFactory:egret.MovieClipDataFactory = new egret.MovieClipDataFactory(data, texture);
         this.movieClipData = mcDataFactory.generateMovieClipData(movieClipName);
     }
+
     /**隐藏 */
     public hide(){
         this.parent && this.parent.removeChild(this);
     }
+
     /**销毁 */
     public destoryMe(){
         this.stop();

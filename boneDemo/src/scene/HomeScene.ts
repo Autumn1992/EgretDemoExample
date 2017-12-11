@@ -4,9 +4,6 @@
  * @date 2017/11/14
  */
 class HomeScene extends eui.Component{
-	private playerList = Array<BaseElement>();
-	private enemyList = Array<BaseElement>();
-
 	private bone1:eui.Button;
 	private bone10:eui.Button;
 	private bone100:eui.Button;
@@ -22,12 +19,19 @@ class HomeScene extends eui.Component{
 	private mcList = [];
 	private mcLabel:eui.Label;
 
-	private fast0:eui.Button;
+	private fast1:eui.Button;
 	private fast10:eui.Button;
 	private fast100:eui.Button;
 	private fastLabel:eui.Label;
 	private clearFast:eui.Button;
 	private fastList = [];
+
+	private bin1:eui.Button;
+	private bin10:eui.Button;
+	private bin100:eui.Button;
+	private binLabel:eui.Label;
+	private clearBin:eui.Button;
+	private binList = [];
 
 	public constructor() {
 		super();
@@ -37,18 +41,9 @@ class HomeScene extends eui.Component{
 	}
 
 	public childrenCreated(){
-		GameConfig.stage = this.stage;
-		this.initDragonBones();
-
-		this.addEventListener(egret.Event.ENTER_FRAME, this.onEnterFrame, this);
 		this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.boneTouch, this);
 	}
 
-	private onEnterFrame(){
-		this.sortChildIndex();
-		this.updatePlayerAction();
-		this.updateEnemyAction();
-	}	
 
 	//创建骨骼
 	private boneTouch(e:egret.TouchEvent){
@@ -77,7 +72,7 @@ class HomeScene extends eui.Component{
 			case this.mc100:
 				this.createMC(100);
 			break;
-			case this.fast0:
+			case this.fast1:
 				this.createFast(1);
 			break;
 			case this.fast10:
@@ -89,16 +84,27 @@ class HomeScene extends eui.Component{
 			case this.clearFast:
 				this.clearFasts();
 			break;
+			case this.bin1:
+				this.createBin(1);
+			break;
+			case this.bin10:
+				this.createBin(10);
+			break;
+			case this.bin100:
+				this.createBin(100);
+			break;
+			case this.clearBin:
+				this.clearBins();
+			break;
 		}
 	}
 
 	//创建一个骨骼
 	private createBone(num:number){
 		for(let i=0;i<num;i++){
-			let db:TestDB = new TestDB();
+			let db:BoneJson = new BoneJson();
 			db.x = 200 + Math.random()*800;
 			db.y = 300 + Math.random()*200;
-			db.playAction(db.action.Skill, -1);
 			this.boneGroup.addChild(db);
 			this.boneList.push(db);
 		}
@@ -109,11 +115,8 @@ class HomeScene extends eui.Component{
 	private clearBones(){
 		let len = this.boneList.length;
 		for(let i=0;i<len;i++){
-			let bone:TestDB = this.boneList[i];
-			bone.armatureDisplay.animation.stop();
-			bone.armatureDisplay.animation.reset();
-			bone.armatureDisplay.dispose();
-			bone.parent && bone.parent.removeChild(bone);
+			let bone:BoneJson = this.boneList[i];
+			bone.destoryMe();
 		}
 		this.boneList.length = 0;
 		this.boneLabel.text =  "骨骼数量:" + this.boneList.length;
@@ -149,9 +152,8 @@ class HomeScene extends eui.Component{
 	//创建极速骨骼
 	private createFast(num:number){
 		for(let i=0;i<num;i++){
-			dragonBones.addMovieGroup(RES.getRes("movie"), RES.getRes("DragonBoy_texture_1_png")); // 添加动画数据和贴图
-			var movie:dragonBones.Movie = dragonBones.buildMovie("DragonBoy"); // 创建 白鹭极速格式 的动画
-			movie.play("walk"); // 播放动画
+			let movie:BoneFast = new BoneFast();
+			this.addChild(movie); // 添加 Movie 到显示列表
 			movie.x = 100 + Math.random()*1000;
 			movie.y = 300 + Math.random()*300;
 			this.boneGroup.addChild(movie); // 添加 Movie 到显示列表
@@ -164,179 +166,36 @@ class HomeScene extends eui.Component{
 	private clearFasts(){
 		let len = this.fastList.length;
 		for(let i=0;i<len;i++){
-			let fast:any = this.fastList[i];
-			fast.stop();
-			fast.parent && fast.parent.removeChild(fast);
+			let fast:BoneFast = this.fastList[i];
+			fast.destoryMe();
 		}
 		this.fastList.length = 0;
 		this.fastLabel.text =  "动画数量:" + this.fastList.length;
 	}
 
-
-	//初始化龙骨，将龙骨的配置文件写入工厂
-	private initDragonBones(){
-		let factory = dragonBones.EgretFactory.factory;
-		let config = GameConfig.config;
-		for(let key in config){
-			let obj = config[key];
-			let dragonbonesData = RES.getRes(obj.bones[0]);
-			let textureData = RES.getRes(obj.bones[1]);
-			let texture = RES.getRes(obj.bones[2]);
-			factory.parseDragonBonesData(dragonbonesData);  
-			factory.parseTextureAtlasData(textureData, texture);
+	//创建二进制骨骼
+	private createBin(num:number){
+		for(let i=0;i<num;i++){
+			let bone:BoneBin = new BoneBin();
+			this.addChild(bone); // 添加 Movie 到显示列表
+			bone.x = 100 + Math.random()*1000;
+			bone.y = 300 + Math.random()*300;
+			this.boneGroup.addChild(bone); // 添加 Movie 到显示列表
+			this.binList.push(bone);
 		}
+		this.binLabel.text = "二进数量:" + this.binList.length;
 	}
 
-	//创建我方角色
-	private createPlayer(xPos:number, yPos:number){
-		let daji = new DaJi();
-		daji.playAction(daji.action.stand, 0);
-		daji.status = Status.Stand;
-		daji.camp = Camp.Player;
-		daji.x = xPos;
-		daji.y = yPos;
-		this.addChild(daji);
-		this.playerList.push(daji);
-	}
-
-	//创建敌方角色
-	private createEnemy(xPos:number, yPos:number){
-		if(Math.random() > 0.5){
-			let bianfujing = new BianFuJing();
-			bianfujing.playAction(bianfujing.action.stand, 0);
-			bianfujing.status = Status.Stand;
-			bianfujing.camp = Camp.Enemy;
-			bianfujing.scaleX = -1;
-			bianfujing.x = xPos;
-			bianfujing.y = yPos;
-			this.addChild(bianfujing);
-			this.enemyList.push(bianfujing);
-		}else{
-			let bingyao = new BingYao();
-			bingyao.playAction(bingyao.action.stand, 0);
-			bingyao.status = Status.Stand;
-			bingyao.camp = Camp.Enemy;
-			bingyao.scaleX = -1;
-			bingyao.x = xPos;
-			bingyao.y = yPos;
-			this.addChild(bingyao);
-			this.enemyList.push(bingyao);
-		}
-	}
-
-
-
-	//我方人员行动
-	private updatePlayerAction(){
-		let player:BaseElement;
-		let len = this.playerList.length;
-		for(let i=len-1;i>=0;i--){
-			player = this.playerList[i];
-			//已死亡，则移除
-			if(player.status == Status.Death){
-				this.playerList.splice(i,1);
-			//未死亡，继续战斗
-			}else if(player.isCanAttack()){
-				let enemy = this.getAttackEnemey();
-				if(enemy){
-					player.attack(enemy);
-				}
-			}
-		}
-	}
-
-	//敌方人员行动
-	private updateEnemyAction(){
-		let element:BaseElement;
-		let len = this.enemyList.length;
-		for(let i=len-1;i>=0;i--){
-			element = this.enemyList[i];
-			//已死亡，则从列表中移除
-			if(element.status == Status.Death){
-				this.enemyList.splice(i,1);
-			//未死亡，继续战斗
-			}else if(element.isCanAttack()){
-				let player = this.getAttackPlayer();
-				if(player){
-					element.attack(player);
-				}
-			}
-		}
-	}
-
-	//获取我方被攻击对象
-	private getAttackPlayer(){
-		let player:BaseElement;
-		let len = this.playerList.length;
-
-		//获取站立或受伤的
-		// for(let index in this.playerList){
-		// 	player = this.playerList[index];
-		// 	if(player.status == Status.Stand || player.status == Status.Injured){
-		// 		return player;
-		// 	}
-		// }
-
-		//随机获取
-		if(len > 0){
-			player = this.playerList[this.getRandInt(0,len-1)];
-			if(player.status == Status.Stand || player.status == Status.Injured){
-				return player;
-			}
-		}	
-		
-		return null;
-	}
-
-	//获取敌方被攻击对象
-	private getAttackEnemey(){
-		let enemy:BaseElement;
-		let len = this.enemyList.length;
-
-		//获取站立或受伤的
-		// for(let index in this.enemyList){
-		// 	enemy = this.enemyList[index];
-		// 	if(enemy.status == Status.Stand || enemy.status == Status.Injured){
-		// 		return enemy;
-		// 	}
-		// }
-
-		//随机获取
-		if(len > 0){
-			enemy = this.enemyList[this.getRandInt(0,len-1)];
-			if(enemy.status == Status.Stand || enemy.status == Status.Injured){
-				return enemy;
-			}
-		}
-	
-		return null;
-	}
-
-	//深度排序
-	private sortChildIndex(){
-		let arr = [];
-		arr = arr.concat(this.playerList);
-		arr = arr.concat(this.enemyList);
-		let len = arr.length;
-		let temp;
+	//清理二进制骨骼
+	private clearBins(){
+		let len = this.binList.length;
 		for(let i=0;i<len;i++){
-			for(let j=i+1;j<len;j++){
-				if(arr[i].y > arr[j].y){
-					temp = arr[i];
-					arr[i] = arr[j];
-					arr[j] = temp;
-				}
-			}
+			let bone:BoneBin = this.binList[i];
+			bone.destoryMe();
 		}
-		for(let i=0;i<len;i++){
-			this.addChild(arr[i]);
-		}
+		this.binList.length = 0;
+		this.binLabel.text =  "动画数量:" + this.binList.length;
 	}
-
-	public getRandInt(start: number,end: number) {
-        return start + Math.round(Math.random() * (end - start));
-    }
-
 
 }
 

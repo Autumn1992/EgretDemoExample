@@ -2,15 +2,25 @@
 var game_file_list = [
     //以下为自动修改，请勿修改
     //----auto game_file_list start----
-	"libs/modules/egret/egret.min.js",
-	"libs/modules/egret/egret.native.min.js",
-	"libs/modules/res/res.min.js",
-	"libs/modules/eui/eui.min.js",
-	"libs/modules/tween/tween.min.js",
-	"libs/modules/dragonBones/dragonBones.min.js",
-	"promise/promise.min.js",
-	"libs/modules/game/game.min.js",
-	"main.min.js",
+	"libs/modules/egret/egret.js",
+	"libs/modules/egret/egret.native.js",
+	"libs/modules/res/res.js",
+	"libs/modules/eui/eui.js",
+	"libs/modules/tween/tween.js",
+	"libs/modules/dragonBones/dragonBones.js",
+	"promise/promise.js",
+	"libs/modules/game/game.js",
+	"bin-debug/movieClip/BaseMovieClip.js",
+	"bin-debug/LoadingUI.js",
+	"bin-debug/Main.js",
+	"bin-debug/ThemeAdapter.js",
+	"bin-debug/dragonbones/BoneBin.js",
+	"bin-debug/scene/LoadScene.js",
+	"bin-debug/dragonbones/BoneJson.js",
+	"bin-debug/AssetAdapter.js",
+	"bin-debug/movieClip/TestMC.js",
+	"bin-debug/scene/HomeScene.js",
+	"bin-debug/dragonbones/BoneFast.js",
 	//----auto game_file_list end----
 ];
 

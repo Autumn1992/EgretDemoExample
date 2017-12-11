@@ -21,4 +21,3 @@ var TestMC = (function (_super) {
     return TestMC;
 }(BaseMovieClip));
 __reflect(TestMC.prototype, "TestMC");
-//# sourceMappingURL=TestMC.js.map
