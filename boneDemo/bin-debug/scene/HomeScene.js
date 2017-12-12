@@ -110,9 +110,9 @@ var HomeScene = (function (_super) {
     //创建一个MC
     HomeScene.prototype.createMC = function (num) {
         for (var i = 0; i < num; i++) {
-            var mc = new TestMC();
+            var mc = new BoneMC();
             mc.x = Math.random() * 1000;
-            mc.y = 150 + Math.random() * 200;
+            mc.y = 500 + Math.random() * 200;
             mc.play(-1);
             this.boneGroup.addChild(mc);
             this.mcList.push(mc);

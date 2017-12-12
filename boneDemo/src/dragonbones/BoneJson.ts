@@ -7,17 +7,15 @@ class BoneJson extends egret.DisplayObjectContainer{
 	public constructor() {
 		super();
 		let factory = dragonBones.EgretFactory.factory;
-		let dragonbonesData = RES.getRes("Dragon_ske_json");
-		let textureData = RES.getRes("Dragon_tex_json");
-		let texture = RES.getRes("Dragon_tex_png");
+		let dragonbonesData = RES.getRes("NewDragon_ske_json");
+		let textureData = RES.getRes("NewDragon_tex_json");
+		let texture = RES.getRes("NewDragon_tex2_png");
 		factory.parseDragonBonesData(dragonbonesData);
 		factory.parseTextureAtlasData(textureData, texture);
 
 
-		this.armatureDisplay = factory.buildArmatureDisplay("Dragon");
-		this.armatureDisplay.animation.play("walk", 0);
-		this.armatureDisplay.scaleX = 0.2;
-		this.armatureDisplay.scaleY = 0.2;
+		this.armatureDisplay = factory.buildArmatureDisplay("armatureName");
+		this.armatureDisplay.animation.play("stand", 0);
         this.addChild(this.armatureDisplay);
 	}
 

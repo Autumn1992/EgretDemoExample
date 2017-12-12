@@ -8,13 +8,11 @@ class BoneBin extends egret.DisplayObjectContainer{
 		super();
 
 		let factory = dragonBones.EgretFactory.factory;
-		factory.parseDragonBonesData(RES.getRes("Dragon_ske_dbbin"));
-		factory.parseTextureAtlasData(RES.getRes("Dragon_tex2_json"), RES.getRes("Dragon_tex3_png"));
+		factory.parseDragonBonesData(RES.getRes("NewDragon_ske_bin"));
+		factory.parseTextureAtlasData(RES.getRes("NewDragon_tex2_json"), RES.getRes("NewDragon_tex3_png"));
 		
-		this.armatureDisplay = factory.buildArmatureDisplay("Dragon");
-		this.armatureDisplay.animation.play("walk");
-		this.armatureDisplay.scaleX = 0.2;
-		this.armatureDisplay.scaleY = 0.2;
+		this.armatureDisplay = factory.buildArmatureDisplay("armatureName");
+		this.armatureDisplay.animation.play("stand",0);
 
 		this.addChild(this.armatureDisplay);
 	}

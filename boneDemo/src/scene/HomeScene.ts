@@ -127,9 +127,9 @@ class HomeScene extends eui.Component{
 	//创建一个MC
 	private createMC(num:number){
 		for(let i=0;i<num;i++){
-			let mc:TestMC = new TestMC();
+			let mc:BoneMC = new BoneMC();
 			mc.x = Math.random()*1000;
-			mc.y = 150 + Math.random()*200;
+			mc.y = 500 + Math.random()*200;
 			mc.play(-1);
 			this.boneGroup.addChild(mc);
 			this.mcList.push(mc);
@@ -141,7 +141,7 @@ class HomeScene extends eui.Component{
 	private clearMCs(){
 		let len = this.mcList.length;
 		for(let i=0;i<len;i++){
-			let mc:TestMC = this.mcList[i];
+			let mc:BoneMC = this.mcList[i];
 			mc.stop();
 			mc.parent && mc.parent.removeChild(mc);
 		}

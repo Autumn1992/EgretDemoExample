@@ -11,15 +11,15 @@
 	],
 	"game": [
 		"bin-debug/movieClip/BaseMovieClip.js",
-		"bin-debug/LoadingUI.js",
+		"bin-debug/dragonbones/BoneFast.js",
 		"bin-debug/Main.js",
 		"bin-debug/ThemeAdapter.js",
 		"bin-debug/dragonbones/BoneBin.js",
-		"bin-debug/scene/LoadScene.js",
+		"bin-debug/LoadingUI.js",
 		"bin-debug/dragonbones/BoneJson.js",
 		"bin-debug/AssetAdapter.js",
-		"bin-debug/movieClip/TestMC.js",
+		"bin-debug/movieClip/BoneMC.js",
 		"bin-debug/scene/HomeScene.js",
-		"bin-debug/dragonbones/BoneFast.js"
+		"bin-debug/scene/LoadScene.js"
 	]
 }

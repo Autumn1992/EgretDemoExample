@@ -19,15 +19,13 @@ var BoneJson = (function (_super) {
     function BoneJson() {
         var _this = _super.call(this) || this;
         var factory = dragonBones.EgretFactory.factory;
-        var dragonbonesData = RES.getRes("Dragon_ske_json");
-        var textureData = RES.getRes("Dragon_tex_json");
-        var texture = RES.getRes("Dragon_tex_png");
+        var dragonbonesData = RES.getRes("NewDragon_ske_json");
+        var textureData = RES.getRes("NewDragon_tex_json");
+        var texture = RES.getRes("NewDragon_tex2_png");
         factory.parseDragonBonesData(dragonbonesData);
         factory.parseTextureAtlasData(textureData, texture);
-        _this.armatureDisplay = factory.buildArmatureDisplay("Dragon");
-        _this.armatureDisplay.animation.play("walk", 0);
-        _this.armatureDisplay.scaleX = 0.2;
-        _this.armatureDisplay.scaleY = 0.2;
+        _this.armatureDisplay = factory.buildArmatureDisplay("armatureName");
+        _this.armatureDisplay.animation.play("stand", 0);
         _this.addChild(_this.armatureDisplay);
         return _this;
     }
