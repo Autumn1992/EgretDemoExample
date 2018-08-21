@@ -66,4 +66,3 @@ var ShakeTool = (function () {
     return ShakeTool;
 }());
 __reflect(ShakeTool.prototype, "ShakeTool");
-//# sourceMappingURL=ShakeTool.js.map

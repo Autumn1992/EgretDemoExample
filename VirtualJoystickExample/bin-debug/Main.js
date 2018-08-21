@@ -37,7 +37,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
-        var _this = _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.isThemeLoadEnd = false;
         _this.isResourceLoadEnd = false;
         return _this;
