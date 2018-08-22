@@ -37,6 +37,7 @@ class VirtualJoystick extends eui.Component{
 		GameConst.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouchBegin, this);
 		GameConst.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.onTouchEnd, this);
 		GameConst.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.onTouchMove, this);
+		GameConst.stage.addChild(this);
 	}
 
 	//停止虚拟摇杆
@@ -49,14 +50,14 @@ class VirtualJoystick extends eui.Component{
 	//触摸开始，显示虚拟摇杆
 	private onTouchBegin(e:egret.TouchEvent){
 		if(this.parent){
-			return;
+			//return;
 		}
 		this.touchID = e.touchPointID;
 		this.x = e.stageX;
 		this.y = e.stageY;
 		this.ball.x = this.centerX;
 		this.ball.y = this.centerY;
-		GameConst.stage.addChild(this);
+		
 
 		this.dispatchEvent(new egret.Event("vj_start"));
 	}
@@ -98,7 +99,7 @@ class VirtualJoystick extends eui.Component{
 	}
 
 	private hide(){
-		this.parent && this.parent.removeChild(this);
+		//this.parent && this.parent.removeChild(this);
 	}
 
 

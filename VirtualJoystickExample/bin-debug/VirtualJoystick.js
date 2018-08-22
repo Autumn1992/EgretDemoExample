@@ -1,10 +1,12 @@
 var __reflect = (this && this.__reflect) || function (p, c, t) {
     p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
 };
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+var __extends = this && this.__extends || function __extends(t, e) { 
+ function r() { 
+ this.constructor = t;
+}
+for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i]);
+r.prototype = e.prototype, t.prototype = new r();
 };
 /**
  * 虚拟摇杆
@@ -44,6 +46,7 @@ var VirtualJoystick = (function (_super) {
         GameConst.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouchBegin, this);
         GameConst.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.onTouchEnd, this);
         GameConst.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.onTouchMove, this);
+        GameConst.stage.addChild(this);
     };
     //停止虚拟摇杆
     VirtualJoystick.prototype.stop = function () {
@@ -54,14 +57,13 @@ var VirtualJoystick = (function (_super) {
     //触摸开始，显示虚拟摇杆
     VirtualJoystick.prototype.onTouchBegin = function (e) {
         if (this.parent) {
-            return;
+            //return;
         }
         this.touchID = e.touchPointID;
         this.x = e.stageX;
         this.y = e.stageY;
         this.ball.x = this.centerX;
         this.ball.y = this.centerY;
-        GameConst.stage.addChild(this);
         this.dispatchEvent(new egret.Event("vj_start"));
     };
     //触摸结束，隐藏虚拟摇杆
@@ -87,6 +89,7 @@ var VirtualJoystick = (function (_super) {
         if (dist <= (this.circleRadius - this.ballRadius)) {
             this.ball.x = this.centerX + e.stageX - this.x;
             this.ball.y = this.centerY + e.stageY - this.y;
+            //手指距离在圆环范围外
         }
         else {
             this.ball.x = Math.cos(angle) * (this.circleRadius - this.ballRadius) + this.centerX;
@@ -96,8 +99,9 @@ var VirtualJoystick = (function (_super) {
         this.dispatchEventWith("vj_move", false, angle);
     };
     VirtualJoystick.prototype.hide = function () {
-        this.parent && this.parent.removeChild(this);
+        //this.parent && this.parent.removeChild(this);
     };
     return VirtualJoystick;
 }(eui.Component));
 __reflect(VirtualJoystick.prototype, "VirtualJoystick");
+//# sourceMappingURL=VirtualJoystick.js.map
